@@ -38,13 +38,13 @@ async function sendPostRequest(body, caminho, token) {
 
     let responseAPI = new Response(await nsAPI.PostRequest(url, body, token))
 
-    if (responseAPI.pdf != null) {
+    if (responseAPI.pdf != null && caminhoSalvar !==null) {
         let data = responseAPI.pdf;
         let buff = Buffer.from(data, 'base64');
         util.salvarArquivo(caminho, responseAPI.chave, ".pdf", buff)
     }
 
-    if (responseAPI.xml != null) {
+    if (responseAPI.xml != null && caminhoSalvar !==null) {
         util.salvarArquivo(caminho, responseAPI.chave, ".xml", responseAPI.xml)
     }
 
